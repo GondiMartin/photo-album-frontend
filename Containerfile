@@ -18,7 +18,7 @@ COPY . .
 VOLUME ["/project/.angular"]
 
 # Open port to allow traffic in container
-EXPOSE 8080
+EXPOSE 4200
 
 # Run start script using npm command
 CMD ["npm", "start"]
