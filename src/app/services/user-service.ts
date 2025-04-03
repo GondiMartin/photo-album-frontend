@@ -44,7 +44,13 @@ export class UserService extends BaseService{
         return sessionStorage.getItem("current-user-token") != null;
     }
 
-    getUserById(userId: number): Observable<User>{
-        return this.http.get<User>(`${this.GET_USER_BYID}/${userId}`)
+    getUserById(userId: string): Observable<User>{
+        const params: HttpParams = new HttpParams().set('id', userId);
+        return this.http.get<User>(`${this.GET_USER_BYID}`,
+            {
+                headers: this.getHeaders(),
+                params:params
+            }
+        );
     }
 }
