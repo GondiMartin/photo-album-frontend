@@ -1,1 +1,9 @@
-<p>photo-viewer works!</p>
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h6 class="border-bottom pb-2 mb-0">My images</h6>
+    <div class="d-flex text-body-secondary pt-3">
+        <p *ngFor="let photo of user.photos" class="pb-3 mb-0 small lh-sm border-bottom">
+            <strong class="d-block text-gray-dark">{{photo.name}}</strong>
+            {{photo.uploadDate.toString().replace("T"," ").substring(0, 16)}}
+        </p>
+    </div>
+</div>
