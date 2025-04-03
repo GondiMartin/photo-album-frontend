@@ -1,0 +1,13 @@
+.text-valid{
+    color: green;
+}
+
+.input-valid{
+    border-color: green;
+}
+
+.input-invalid{
+    border-color: red;
+}
+
+
