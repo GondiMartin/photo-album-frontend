@@ -37,55 +37,18 @@
             </div>
 
             <div class="row">
-
-                <div class="col-4">
+                <div *ngFor="let image of images" class="col-4">
                     <div class="card-body">
                         <div class="card mx-auto bg-secondary">
                             <div class="card-body">
                                 <div class="row">
-                                   <img alt="photo-placeholer">
+                                    <img *ngIf="image.image != null" title="User image"
+                                        [src]="image.imgSrc" alt="User image">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-4">
-                    <div class="card-body">
-                        <div class="card mx-auto bg-secondary">
-                            <div class="card-body">
-                                <div class="row">
-                                   <img alt="photo-placeholer">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="card-body">
-                        <div class="card mx-auto bg-secondary">
-                            <div class="card-body">
-                                <div class="row">
-                                   <img alt="photo-placeholer">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="card-body">
-                        <div class="card mx-auto bg-secondary">
-                            <div class="card-body">
-                                <div class="row">
-                                   <img alt="photo-placeholer">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
         </div>

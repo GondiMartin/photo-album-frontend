@@ -10,7 +10,7 @@ import { Image } from '../models/image';
 })
 export class PhotoViewerComponent implements OnInit{
   
-  images: Image[] = [];
+  images: Image[] = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image()];
   newImage: Image = new Image();
   selectedFile: string = "";
 
