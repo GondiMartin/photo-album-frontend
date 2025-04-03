@@ -1,0 +1,46 @@
+<div class="mediapp-viewport-w-h-full bimage container-fluid">
+    <div class="flex-parent-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="p-5">
+                            <h2 class="text-uppercase text-center mb-5">Login</h2>
+                            <form #form="ngForm" class="needs-validation" (keydown.enter)="(isValidEmail() && isValidPassword()) && logInUser();$event.preventDefault()" novalidate>
+                                <div class="form-outline mb-4">
+                                    <input name="email" type="email" id="label_email"
+                                           [ngClass]="{'input-invalid': !isValidEmail(), 'input-valid': isValidEmail()}" class="form-control form-control-lg" [(ngModel)]="user.email"/>
+                                    <label class="form-label" for="label_email">Your Email</label>
+                                    <div *ngIf="!isValidEmail()" class="text-danger">
+                                        Please provide a valid email.
+                                    </div>
+                                    <div *ngIf="isValidEmail()" class="text-valid">Email is valid</div>
+
+
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input name="password" type="password" id="label_password"
+                                           [ngClass]="{'input-invalid': !isValidEmail(), 'input-valid': isValidEmail()}" class="form-control form-control-lg" [(ngModel)]="user.password" />
+                                    <label class="form-label" for="label_password">Password</label>
+                                    <div *ngIf="!isValidPassword()" class="text-danger">
+                                        Please provide a valid password.
+                                    </div>
+                                    <div *ngIf="isValidPassword()" class="text-valid">Password is valid</div>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit"
+                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" [disabled]="!isValidEmail() || !isValidPassword()" (click)="logInUser()">Login</button>
+                                </div>
+
+                                <p class="text-center text-muted mt-5 mb-0">Not a member? <a href="/register"
+                                                                                             class="fw-bold text-body"><u>Register here</u></a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

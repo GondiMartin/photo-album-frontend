@@ -38,8 +38,10 @@ export class UserService extends BaseService{
         sessionStorage.removeItem('current-user-id');
         this.router.navigate(['/auth/login']);
     }
-    
 
+    isLoggedIn(): boolean{
+        return sessionStorage.getItem("current-user-token") != null;
+    }
 
     getUserById(userId: number): Observable<User>{
         return this.http.get<User>(`${this.GET_USER_BYID}/${userId}`)

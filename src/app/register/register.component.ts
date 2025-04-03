@@ -26,15 +26,13 @@ export class RegisterComponent {
   }
 
   goToLogin(){
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/login']);
   }
 
   isValidName(name: string): boolean{
     let nameRegex: RegExp = /^[\p{L}\p{M} ]+$/u;
-    if(!nameRegex.test(name)){
-      return false;
-    }
-    return true;
+    return nameRegex.test(name);
+
   }
 
   isValidEmail(): boolean{
@@ -49,11 +47,9 @@ export class RegisterComponent {
   isValidPassword(): boolean{
     let password: string = this.user.password;
     let passwordRegex: RegExp = /[a-zA-Z0-9]+/;
-    if(!passwordRegex.test(password)){
-      return false;
-    }
+    return passwordRegex.test(password);
 
-    return true;
+
   }
 
   isAllValid(): boolean{
