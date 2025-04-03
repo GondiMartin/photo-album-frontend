@@ -40,7 +40,7 @@ export class UserService extends BaseService{
     }
 
     isLoggedIn(): boolean{
-        return true;
+        //return true;
         return sessionStorage.getItem("current-user-token") != null;
     }
 
