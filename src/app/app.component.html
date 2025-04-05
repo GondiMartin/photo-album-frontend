@@ -1,6 +1,6 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="/trip/search">Home</a>
+    <a class="navbar-brand" routerLink="/myphotos">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,7 +17,7 @@
           <a class="nav-link" routerLink="/myphotos">My photos</a>
         </li>
         <li *ngIf="userService.isLoggedIn()" class="nav-item" routerLinkActive="active">
-          <a (click)="logout()" class="nav-link" routerLink="/worker/login">Logout</a>
+          <a (click)="logout()" class="nav-link" routerLink="/login">Logout</a>
         </li>
       </ul>
     </div>
