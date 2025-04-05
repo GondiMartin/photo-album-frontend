@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MyPhotosService } from '../services/my-photos.service';
 import { UserService } from '../services/user-service';
 import { Image } from '../models/image';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-photo-viewer',
@@ -14,6 +13,8 @@ export class PhotoViewerComponent implements OnInit{
   images: Image[] = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image()];
   newImage: Image = new Image();
   selectedFile: string = "";
+  reverse: boolean = false;
+  sortBy = "";
 
   ngOnInit(): void {
     
@@ -84,6 +85,28 @@ export class PhotoViewerComponent implements OnInit{
       this.images.splice(index, 1);
       this.ngOnInit();
     });
+  }
+
+  sortByName() {
+    this.images.sort((a, b) => {
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+      if (nameA < nameB) return this.reverse ? 1 : -1;
+      if (nameA > nameB) return this.reverse ? -1 : 1;
+      return 0;
+    });
+    this.reverse = !this.reverse;
+  }
+  
+  sortByDate() {
+    this.images.sort((a, b) => {
+      const dateA = new Date(a.uploadDate);
+      const dateB = new Date(b.uploadDate);
+      if (dateA < dateB) return this.reverse ? 1 : -1;
+      if (dateA > dateB) return this.reverse ? -1 : 1;
+      return 0;
+    });
+    this.reverse = !this.reverse;
   }
 
 }

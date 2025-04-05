@@ -31,7 +31,18 @@
 
         <div class="card mt-2 mx-auto p-4 bg-light">
             <div class="card-header">
-                <b>My album</b>
+                <div class="row">
+                    <div class="col-12" style="text-align: center;">
+                        <b>My album</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8"></div>
+                    <div class="col-4" style="text-align: right;">
+                        <button type="button" class="btn btn-outline-dark" style="margin-right: 5px;" (click)="sortByName()">Name</button>
+                        <button type="button" class="btn btn-outline-dark" (click)="sortByDate()">Upload date</button>
+                    </div>
+                </div>
             </div>
 
             <div class="row">
