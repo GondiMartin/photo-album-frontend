@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MyPhotosService } from '../services/my-photos.service';
 import { UserService } from '../services/user-service';
 import { Image } from '../models/image';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-photo-viewer',
@@ -28,20 +29,26 @@ export class PhotoViewerComponent implements OnInit{
   }
   
   loadImages() {
-    this.myPhotosService.getAll().subscribe(images => {
-      this.images = images.map(imageData => {
-        let image = Object.assign(new Image(), imageData);
-        image.imgSrc = image.getImageSrc();
-        return image;
+    const userId = sessionStorage.getItem("current-user-id");
+    if (userId != null) {
+      this.myPhotosService.getAll(Number.parseInt(userId)).subscribe(images => {
+        this.images = images.map(imageData => {
+          let image = Object.assign(new Image(), imageData);
+          image.imgSrc = image.getImageSrc();
+          return image;
+        });
       });
-    });
+    }
   }
 
   sendForm() {
-    const json = sessionStorage.getItem("current-user");
-    if (json != null) {
-      this.myPhotosService.create(this.newImage).subscribe(newImage => {
+    const userId = sessionStorage.getItem("current-user-id");
+    if (userId != null && this.selectedFile !== '' && this.newImage.image != null) {
+      this.newImage.name = this.selectedFile;
+      this.newImage.userId = Number.parseInt(userId);
+      this.myPhotosService.upload(this.newImage).subscribe(newImage => {
         this.selectedFile = '';
+        this.newImage = new Image();
         let np: Image = Image.convertNewImage(newImage);
         this.images.unshift(np);
         this.ngOnInit();
@@ -69,6 +76,14 @@ export class PhotoViewerComponent implements OnInit{
     if (file) {
       this.selectedFile = file.name;
     }
+  }
+
+  delete(image: Image) {
+    this.myPhotosService.delete(image.id).subscribe(_ => {
+      const index = this.images.findIndex(i => i.id === image.id);
+      this.images.splice(index, 1);
+      this.ngOnInit();
+    });
   }
 
 }

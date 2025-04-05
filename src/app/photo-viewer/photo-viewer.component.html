@@ -8,20 +8,18 @@
                 <div id="image-form">
                     <div class="row">
                         <div class="col-12 mx-auto">
-                            <form class="p-3">
+                            <form #myForm="ngForm" class="p-3">
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="image"
                                             (change)="onFileSelected($event); onFileNameChanged($event)"
                                             name="image">
-                                        <label class="custom-file-label" for="image">{{selectedFile ||
-                                            'Choose file'}}</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col mx-auto">
-                                        <button class="block-button btn btn-info" type="button"
-                                            (click)="sendForm()">Upload</button>
+                                        <button class="block-button btn btn-light" type="button"
+                                            (click)="sendForm(); myForm.reset()">Upload</button>
                                     </div>
                                 </div>
                             </form>
@@ -38,14 +36,28 @@
 
             <div class="row">
                 <div *ngFor="let image of images" class="col-4">
-                    <div class="card-body">
-                        <div class="card mx-auto bg-secondary">
-                            <div class="card-body">
-                                <div class="row">
-                                    <img *ngIf="image.image != null" title="User image"
-                                        [src]="image.imgSrc" alt="User image">
+                    <div class="card mb-2">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-10 mt-2">
+                                    {{image.name}}
+                                </div>
+                                <div class="col-2">
+                                    <button type="button" rel="tooltip" class="btn btn-outline-danger btn-just-icon btn-sm"
+                                    data-original-title="" title="" (click)="delete(image)">
+                                    <i class="material-icons mt-1">delete</i>
+                                </button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="card-body mx-auto">
+                            <div class="row">
+                                <img *ngIf="image.image != null" title="User image"
+                                    [src]="image.imgSrc" alt="User image">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            {{image.uploadDate}}
                         </div>
                     </div>
                 </div>

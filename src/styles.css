@@ -16,7 +16,7 @@ body {
     background-color: #fff;
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-image: url('assets/agency.jpg'); /*https://www.yasar.com.tr/tr/images/temp/bintur_header.jpg*/
+    background-image: url('assets/album1.jpg'); /*https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fdark-wood-table-top&psig=AOvVaw2eVvA4h6xpBclJsTn-S4w1&ust=1743931281904000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLCj9LfIwIwDFQAAAAAdAAAAABBh*/
     background-size: cover;
 }
 
@@ -71,7 +71,7 @@ main {
 .database-name {
     text-align: center;
     padding-bottom: 15px;
-    color: black;
+    color: white;
 }
 
 .new-entity{

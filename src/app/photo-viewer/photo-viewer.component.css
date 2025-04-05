@@ -1,12 +1,16 @@
  #image-form{
-     border: 3px solid darkcyan;
+     border: 3px solid grey;
      border-radius: 5px;
-     background-color: antiquewhite;
-     margin-bottom: 30px;
+     background-color: darkgrey;
+     margin-bottom: 7px;
  }
  
  .block-button{
      display: block;
      width: 100%;
      text-align: center;
+ }
+
+ .delete-icon {
+    float: right;
  }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base-service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment';
@@ -11,7 +11,7 @@ import { Image } from '../models/image';
 })
 export class MyPhotosService extends BaseService{
 
-  private readonly MY_PHOTOS_URL = environment.API_URL + "/my-photos";
+  private readonly MY_PHOTOS_URL = environment.API_URL + "/photos";
 
   constructor(
     private readonly http: HttpClient,
@@ -20,11 +20,23 @@ export class MyPhotosService extends BaseService{
     super();
   }
 
-  create(image: Image): Observable<Image> {
+  upload(image: Image): Observable<Image> {
     return this.http.post<Image>(this.MY_PHOTOS_URL, image);
   }
 
-  getAll(): Observable<Image[]>{
-    return this.http.get<Image[]>(this.MY_PHOTOS_URL, { headers: this.getHeaders()});
+  getAll(userId: number): Observable<Image[]>{
+    const params: HttpParams = new HttpParams().set('userId', userId);
+    return this.http.get<Image[]>(this.MY_PHOTOS_URL, { 
+      headers: this.getHeaders(),
+      params: params
+    });
+  }
+
+  delete(imageId: number): Observable<void> {
+    const params: HttpParams = new HttpParams().set("imageId", imageId);
+    return this.http.delete<void>(this.MY_PHOTOS_URL, {
+      headers: this.getHeaders(),
+      params: params
+    });
   }
 }

@@ -6,7 +6,6 @@ import { Router } from "@angular/router";
 import {BaseService} from "./base-service";
 import {RegisterUser} from "../models/register-user";
 import {AuthResponse} from "../models/auth-response";
-import {User} from "../models/user";
 
 
 @Injectable({
@@ -16,7 +15,6 @@ export class UserService extends BaseService{
     
     private readonly LOGIN_URL: string = environment.API_URL + "/api/v1/auth/authenticate";
     private readonly REGSITRATION_URL = environment.API_URL + "/api/v1/auth/register";
-    private readonly GET_USER_BYID = environment.API_URL + "/user";
 
     constructor(
         private readonly http: HttpClient,
@@ -40,17 +38,6 @@ export class UserService extends BaseService{
     }
 
     isLoggedIn(): boolean{
-        //return true;
         return sessionStorage.getItem("current-user-token") != null;
-    }
-
-    getUserById(userId: string): Observable<User>{
-        const params: HttpParams = new HttpParams().set('id', userId);
-        return this.http.get<User>(`${this.GET_USER_BYID}`,
-            {
-                headers: this.getHeaders(),
-                params:params
-            }
-        );
     }
 }

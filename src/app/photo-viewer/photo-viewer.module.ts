@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PhotoViewerRoutingModule } from './photo-viewer-routing.module';
 import { PhotoViewerComponent } from './photo-viewer.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { PhotoViewerComponent } from './photo-viewer.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     PhotoViewerRoutingModule
   ]
 })
